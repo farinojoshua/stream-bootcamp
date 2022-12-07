@@ -3,7 +3,14 @@
 @section('title', 'Movies')
 
 @section('content')
-  <div class="row">
+
+  @if(session()->has('success'))
+    <div class="alert alert-success">
+    {{ session('success') }} 
+    </div>
+  @endif
+
+<div class="row">
     <div class="col-md-12">
       <div class="card card-primary">
         <div class="card-header">
@@ -45,7 +52,12 @@
                     <td>{{ $movie->categories }}</td>
                     <td>{{ $movie->casts }}</td>
                     <td>
-                      <a href="{{ route('admin.movie.edit', $movie->id) }}" class="btn btn-warning">Edit</a>
+                      <a href="{{ route('admin.movie.edit', $movie->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                      <form action="{{ route('admin.movie.destroy', $movie->id) }}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
+                      </form>
                     </td>
                   </tr>
                   @endforeach

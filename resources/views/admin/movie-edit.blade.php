@@ -1,6 +1,6 @@
 @extends('admin.layouts.base')
 
-@section('title', 'Edit Movie');
+@section('title', 'Edit Movie')
 
 @section('content')
 <div class="row">
